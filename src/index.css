@@ -21,7 +21,8 @@
   tab-size: 4;
 }
 html,
-body {
+body,
+#root {
   height: 100%;
 }
 img,
