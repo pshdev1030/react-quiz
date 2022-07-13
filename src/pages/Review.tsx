@@ -11,7 +11,7 @@ type ParamsType = {
 
 const Review = () => {
   const { id } = useParams<keyof ParamsType>() as unknown as ParamsType;
-  const { curIndex, solvedQuestions } = useStore();
+  const { curIndex, solvedQuestions, resetStatus } = useStore();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -39,6 +39,11 @@ const Review = () => {
     navigate(`/review/${Number(id) - 1}`);
   }, [id]);
 
+  const handleClickOtherQuestionButton = useCallback(() => {
+    resetStatus();
+    navigate("/");
+  }, []);
+
   return (
     <div>
       <div>{solvedQuestions[id]?.category}</div>
@@ -55,6 +60,7 @@ const Review = () => {
         <button onClick={handleClickNextPage}>다음 문제</button>
       )}
       <Link to="/">다시 풀기</Link>
+      <button onClick={handleClickOtherQuestionButton}>다른 문제 풀기</button>
     </div>
   );
 };
