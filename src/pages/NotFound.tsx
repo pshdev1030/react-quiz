@@ -1,5 +1,11 @@
+import { Link } from "react-router-dom";
+
 const NotFound = () => {
-  return <div>NotFound</div>;
+  return (
+    <div>
+      <Link to="/">메인으로 돌아가기</Link>
+    </div>
+  );
 };
 
 export default NotFound;
