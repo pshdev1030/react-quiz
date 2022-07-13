@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 
 export const PageWrapper = styled.div`
   max-width: 500px;
+  background: #6e85b7;
+  border-radius: 20px;
+  padding: 50px;
 `;
 
 export const Button = styled.button`
