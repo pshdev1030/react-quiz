@@ -6,7 +6,7 @@ import { SelectItems } from "../components/SelectItems";
 import { INITIAL_QUESTION_LENGTH } from "../constants";
 import useUserSelect from "../hooks/useUserSelect";
 import useStore from "../store";
-import { Button, PageWrapper } from "../styles/common";
+import { PageWrapper } from "../styles/common";
 import {
   CategoryWrapper,
   QuestionNumberWrapper,

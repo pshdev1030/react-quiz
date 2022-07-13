@@ -14,7 +14,6 @@ import {
   QuestionNumberWrapper,
   QuestionWrapper,
 } from "../styles/Question";
-import Question from "./Question";
 
 type ParamsType = {
   id: number;

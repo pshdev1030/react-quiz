@@ -21,6 +21,7 @@ async function getQuestionsData() {
 
 const Main = () => {
   const { questions, init, initStatus } = useStore();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isLoading, setIsLoadingTrue, setIsLoadingFalse] = useFlag(true);
   const [isError, setIsErrorTrue, setIsErrorFalse] = useFlag(false);
 
