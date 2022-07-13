@@ -11,6 +11,7 @@ interface StoreType {
   correctAnswer: number;
   wrongAnswer: number;
   init: (questions: QuestionType[], startTime: Dayjs) => void;
+  initStatus: (startTime: Dayjs) => void;
   finish: (finishTime: Dayjs) => void;
   increaseIndex: () => void;
   solveQuestion: (question: QuestionType, userSelect: string) => void;
@@ -22,7 +23,6 @@ const INITIAL_SOLVED_QUESTION: QuestionType[] = [];
 const initialState = {
   curIndex: 0,
   solvedQuestions: [],
-  questions: [],
   startTime: null,
   endTime: null,
   correctAnswer: 0,
@@ -31,12 +31,19 @@ const initialState = {
 
 const useStore = create<StoreType>((set) => ({
   ...initialState,
+  questions: [],
   init: (questions: QuestionType[], startTime: Dayjs) =>
     set((state) => ({
       ...state,
+      ...initialState,
       questions: [...questions],
       startTime,
-      endTime: null,
+    })),
+  initStatus: (startTime: Dayjs) =>
+    set((state) => ({
+      ...state,
+      ...initialState,
+      startTime,
     })),
   increaseIndex: () =>
     set((state) => ({ ...state, curIndex: state.curIndex + 1 })),

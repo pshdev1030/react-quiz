@@ -1,6 +1,6 @@
 import { INITIAL_QUESTION_URL, INITIAL_SELECT_LENGTH } from "../constants";
 import axios from "axios";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { QuestionType } from "../types/db";
 import { Link } from "react-router-dom";
 import useStore from "../store";
@@ -19,24 +19,34 @@ async function getQuestionsData() {
 }
 
 const Main = () => {
-  const { questions, init, startTime } = useStore();
+  const { questions, init, initStatus } = useStore();
   const [isLoading, setIsLoadingTrue, setIsLoadingFalse] = useFlag(true);
   const [isError, setIsErrorTrue, setIsErrorFalse] = useFlag(false);
+
+  const handleLoadSuccess = useCallback(() => {
+    setIsLoadingFalse();
+    setIsErrorFalse();
+  }, []);
+
+  const handleLoadFail = useCallback(() => {
+    setIsLoadingFalse();
+    setIsErrorTrue();
+  }, []);
 
   useEffect(() => {
     if (questions.length === 0) {
       (async function () {
         try {
           const questions = await getQuestionsData();
-          setIsLoadingFalse();
-          setIsErrorFalse();
-
+          handleLoadSuccess();
           init(questions, dayjs());
         } catch (e) {
-          setIsLoadingFalse();
-          setIsErrorTrue();
+          handleLoadFail();
         }
       })();
+    } else {
+      handleLoadSuccess();
+      initStatus(dayjs());
     }
   }, []);
 
