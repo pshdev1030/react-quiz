@@ -48,19 +48,14 @@ const CircleChart = ({
       .attr("fill", (d, i) => (i === 0 ? "#56ffa4" : "#ff5656"))
       .attr("d", data_arc);
 
-    svg
-      .selectAll(".text")
-      .data(data_pie)
-      .enter()
+    arcs
       .append("text")
-      .text((d, i) => (i === 0 ? `${correct_answer}` : `${wrong_answer}`))
-      .attr("class", "text")
+      .text((d, i) =>
+        i === 0 ? `정답 : ${correct_answer}` : `오답 : ${wrong_answer}`
+      )
       .attr("text-anchor", "middle")
-      .attr(
-        "transform",
-        (d, i) =>
-          `translate(${width / 2 + data_arc.centroid(d)[0]},${height / 2})`
-      );
+      .attr("transform", (d, i) => `translate(${data_arc.centroid(d)})`)
+      .attr("fill", "black");
   }, []);
   return <ChartWrapper ref={wrapperRef}></ChartWrapper>;
 };
