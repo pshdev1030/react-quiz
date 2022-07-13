@@ -47,6 +47,7 @@ const Question = () => {
 
   return (
     <div>
+      <div>Q {`${Number(id) + 1}/${questions.length}`}</div>
       <div>{questions[id]?.category}</div>
       <div>{questions[id]?.question}</div>
       {userSelect.length !== 0 ? (

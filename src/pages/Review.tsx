@@ -46,6 +46,7 @@ const Review = () => {
 
   return (
     <div>
+      <div>Q {`${Number(id) + 1}/${solvedQuestions.length}`}</div>
       <div>{solvedQuestions[id]?.category}</div>
       <div>{solvedQuestions[id]?.question}</div>
       <SelectItems
