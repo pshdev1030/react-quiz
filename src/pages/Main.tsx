@@ -5,6 +5,7 @@ import { QuestionType } from "../types/db";
 import { Link } from "react-router-dom";
 import useStore from "../store";
 import useFlag from "../hooks/useFlag";
+import dayjs from "dayjs";
 
 async function getQuestionsData() {
   const questionsData = await axios(INITIAL_QUESTION_URL);
@@ -29,7 +30,8 @@ const Main = () => {
           const questions = await getQuestionsData();
           setIsLoadingFalse();
           setIsErrorFalse();
-          init(questions, new Date());
+
+          init(questions, dayjs());
         } catch (e) {
           setIsLoadingFalse();
           setIsErrorTrue();

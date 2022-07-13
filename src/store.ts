@@ -1,3 +1,4 @@
+import { Dayjs } from "dayjs";
 import create from "zustand";
 import { QuestionType } from "./types/db";
 
@@ -5,10 +6,12 @@ interface StoreType {
   questions: QuestionType[];
   solvedQuestions: QuestionType[];
   curIndex: number;
-  init: (questions: QuestionType[], startTime: Date) => void;
-  startTime: Date | null;
+  startTime: Dayjs | null;
+  endTime: Dayjs | null;
   correctAnswer: number;
   wrongAnswer: number;
+  init: (questions: QuestionType[], startTime: Dayjs) => void;
+  finish: (finishTime: Dayjs) => void;
   increaseIndex: () => void;
   solveQuestion: (question: QuestionType, userSelect: string) => void;
 }
@@ -21,14 +24,20 @@ const initialState = {
   solvedQuestions: [],
   questions: [],
   startTime: null,
+  endTime: null,
   correctAnswer: 0,
   wrongAnswer: 0,
 };
 
 const useStore = create<StoreType>((set) => ({
   ...initialState,
-  init: (questions: QuestionType[], startTime: Date) =>
-    set((state) => ({ ...state, questions: [...questions], startTime })),
+  init: (questions: QuestionType[], startTime: Dayjs) =>
+    set((state) => ({
+      ...state,
+      questions: [...questions],
+      startTime,
+      endTime: null,
+    })),
   increaseIndex: () =>
     set((state) => ({ ...state, curIndex: state.curIndex + 1 })),
   solveQuestion: (question: QuestionType, userSelect: string) => {
@@ -48,6 +57,7 @@ const useStore = create<StoreType>((set) => ({
       wrongAnswer: state.wrongAnswer + 1,
     }));
   },
+  finish: (endTime: Dayjs) => set((state) => ({ ...state, endTime })),
 }));
 
 export default useStore;
