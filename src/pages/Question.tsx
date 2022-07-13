@@ -28,12 +28,12 @@ const Question = () => {
       navigate("/");
       return;
     }
-    if (Number(id) !== curIndex) {
-      navigate(`/question/${curIndex}`);
-      return;
-    }
     if (curIndex === INITIAL_QUESTION_LENGTH) {
       navigate("/result");
+      return;
+    }
+    if (Number(id) !== curIndex) {
+      navigate(`/question/${curIndex}`);
       return;
     }
   }, [id, curIndex, questions.length]);
@@ -44,13 +44,12 @@ const Question = () => {
   const handleClickNextPage = useCallback(() => {
     resetUserSelect();
     solveQuestion(questions[id], userSelect);
-    if (curIndex === INITIAL_QUESTION_LENGTH) {
+    if (curIndex + 1 === INITIAL_QUESTION_LENGTH) {
       navigate("/result");
       return;
     }
     navigate(`/question/${Number(id) + 1}`);
   }, [questions, id, userSelect]);
-
   return (
     <PageWrapper>
       <QuestionNumberWrapper>
