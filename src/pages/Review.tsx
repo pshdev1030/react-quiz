@@ -9,6 +9,12 @@ import {
   LinkButton,
   PageWrapper,
 } from "../styles/common";
+import {
+  CategoryWrapper,
+  QuestionNumberWrapper,
+  QuestionWrapper,
+} from "../styles/Question";
+import Question from "./Question";
 
 type ParamsType = {
   id: number;
@@ -51,9 +57,11 @@ const Review = () => {
 
   return (
     <PageWrapper>
-      <div>Q {`${Number(id) + 1}/${solvedQuestions.length}`}</div>
-      <div>{solvedQuestions[id]?.category}</div>
-      <div>{solvedQuestions[id]?.question}</div>
+      <QuestionNumberWrapper>
+        Q {`${Number(id) + 1}/${solvedQuestions.length}`}
+      </QuestionNumberWrapper>
+      <CategoryWrapper>{solvedQuestions[id]?.category}</CategoryWrapper>
+      <QuestionWrapper>{solvedQuestions[id]?.question}</QuestionWrapper>
       <SelectItems
         userSelect={solvedQuestions[id]?.select}
         correct_answer={solvedQuestions[id]?.correct_answer}
