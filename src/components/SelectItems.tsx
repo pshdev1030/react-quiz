@@ -29,15 +29,20 @@ export const SelectItemsWrapper = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 5px;
   & li {
     width: 100%;
   }
+  margin-bottom: 10px;
 `;
 
 export const SelectItem = styled.div<{
   userSelected: boolean;
   correct: boolean;
 }>`
+  text-align: left;
+  border: 1px solid white;
+  padding: 10px;
   background: ${({ correct, userSelected }) =>
     correct
       ? "linear-gradient(90deg,#56ffa4,#59bc86)"

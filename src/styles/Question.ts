@@ -15,4 +15,5 @@ export const CategoryWrapper = styled.div`
 
 export const QuestionWrapper = styled.div`
   font-size: 23px;
+  margin-bottom: 10px;
 `;

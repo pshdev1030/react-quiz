@@ -19,5 +19,10 @@ export const SelectButtons = ({ select_array, onClick }: SelectItemsProps) => {
 
 export const SelectButton = styled.button`
   text-align: left;
+  border: 1px solid white;
+  padding: 10px;
   width: 100%;
+  &:hover {
+    background: white;
+  }
 `;
