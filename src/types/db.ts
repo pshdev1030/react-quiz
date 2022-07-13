@@ -6,4 +6,5 @@ export interface QuestionType {
   incorrect_answers: string[];
   question: string;
   type: string;
+  select: string;
 }

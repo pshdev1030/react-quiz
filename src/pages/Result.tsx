@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { useEffect, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { INITIAL_QUESTION_LENGTH } from "../constants";
 import useStore from "../store";
 
@@ -38,8 +38,8 @@ const Result = () => {
       <div>정답 : {correctAnswer}</div>
       <div>오답 : {wrongAnswer}</div>
       <div>chart</div>
-      <button>다시 풀기</button>
-      <button>오답 노트</button>
+      <Link to="/">다시 풀기</Link>
+      <Link to="/review/0">오답 노트</Link>
     </div>
   );
 };

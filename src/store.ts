@@ -48,6 +48,7 @@ const useStore = create<StoreType>((set) => ({
   increaseIndex: () =>
     set((state) => ({ ...state, curIndex: state.curIndex + 1 })),
   solveQuestion: (question: QuestionType, userSelect: string) => {
+    question.select = userSelect;
     if (question.correct_answer === userSelect) {
       set((state) => ({
         ...state,
