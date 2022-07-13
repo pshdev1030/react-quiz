@@ -1,11 +1,11 @@
-import styled from "@emotion/styled";
 import { useCallback, useEffect } from "react";
-import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { SelectButtons } from "../components/SelectButtons";
 import { SelectItems } from "../components/SelectItems";
 import { INITIAL_QUESTION_LENGTH } from "../constants";
 import useUserSelect from "../hooks/useUserSelect";
 import useStore from "../store";
+import { Button, PageWrapper } from "../styles/common";
 
 type ParamsType = {
   id: number;
@@ -46,7 +46,7 @@ const Question = () => {
   }, [questions, id, userSelect]);
 
   return (
-    <div>
+    <PageWrapper>
       <div>Q {`${Number(id) + 1}/${questions.length}`}</div>
       <div>{questions[id]?.category}</div>
       <div>{questions[id]?.question}</div>
@@ -63,9 +63,9 @@ const Question = () => {
         />
       )}
       {userSelect.length !== 0 && (
-        <button onClick={handleClickNextPage}>다음 문제</button>
+        <Button onClick={handleClickNextPage}>다음 문제</Button>
       )}
-    </div>
+    </PageWrapper>
   );
 };
 

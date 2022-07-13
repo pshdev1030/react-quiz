@@ -1,9 +1,14 @@
-import styled from "@emotion/styled";
 import { useCallback, useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { SelectItems } from "../components/SelectItems";
 import { INITIAL_QUESTION_LENGTH } from "../constants";
 import useStore from "../store";
+import {
+  Button,
+  ButtonsWrapper,
+  LinkButton,
+  PageWrapper,
+} from "../styles/common";
 
 type ParamsType = {
   id: number;
@@ -45,7 +50,7 @@ const Review = () => {
   }, []);
 
   return (
-    <div>
+    <PageWrapper>
       <div>Q {`${Number(id) + 1}/${solvedQuestions.length}`}</div>
       <div>{solvedQuestions[id]?.category}</div>
       <div>{solvedQuestions[id]?.question}</div>
@@ -54,15 +59,17 @@ const Review = () => {
         correct_answer={solvedQuestions[id]?.correct_answer}
         select_array={solvedQuestions[id]?.select_array}
       />
-      {Number(id) !== 0 && (
-        <button onClick={handleClickPrevPage}>이전 문제</button>
-      )}
-      {Number(id) + 1 !== INITIAL_QUESTION_LENGTH && (
-        <button onClick={handleClickNextPage}>다음 문제</button>
-      )}
-      <Link to="/">다시 풀기</Link>
-      <button onClick={handleClickOtherQuestionButton}>다른 문제 풀기</button>
-    </div>
+      <ButtonsWrapper>
+        {Number(id) !== 0 && (
+          <Button onClick={handleClickPrevPage}>이전 문제</Button>
+        )}
+        {Number(id) + 1 !== INITIAL_QUESTION_LENGTH && (
+          <Button onClick={handleClickNextPage}>다음 문제</Button>
+        )}
+        <LinkButton to="/">다시 풀기</LinkButton>
+        <Button onClick={handleClickOtherQuestionButton}>다른 문제 풀기</Button>
+      </ButtonsWrapper>
+    </PageWrapper>
   );
 };
 

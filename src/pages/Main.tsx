@@ -2,10 +2,10 @@ import { INITIAL_QUESTION_URL, INITIAL_SELECT_LENGTH } from "../constants";
 import axios from "axios";
 import { useCallback, useEffect } from "react";
 import { QuestionType } from "../types/db";
-import { Link } from "react-router-dom";
 import useStore from "../store";
 import useFlag from "../hooks/useFlag";
 import dayjs from "dayjs";
+import { LinkButton, PageWrapper } from "../styles/common";
 
 async function getQuestionsData() {
   const questionsData = await axios(INITIAL_QUESTION_URL);
@@ -59,10 +59,10 @@ const Main = () => {
   }
 
   return (
-    <div>
+    <PageWrapper>
       <h1>React Quiiiiiiiiiiiiz</h1>
-      <Link to="/question/0">퀴즈 풀기</Link>
-    </div>
+      <LinkButton to="/question/0">퀴즈 풀기</LinkButton>
+    </PageWrapper>
   );
 };
 

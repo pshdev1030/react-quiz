@@ -1,10 +1,16 @@
 import styled from "@emotion/styled";
 import dayjs from "dayjs";
 import { useCallback, useEffect, useMemo } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CircleChart from "../components/CircleChart";
 import { INITIAL_QUESTION_LENGTH } from "../constants";
 import useStore from "../store";
+import {
+  Button,
+  ButtonsWrapper,
+  LinkButton,
+  PageWrapper,
+} from "../styles/common";
 
 const Result = () => {
   const {
@@ -43,7 +49,7 @@ const Result = () => {
   }, [startTime, endTime]);
 
   return (
-    <div>
+    <PageWrapper>
       <div>Result</div>
       <div>
         {`총 걸린 시간 : ${diff.hours}시간 ${diff.minutes}분 ${diff.seconds}초`}
@@ -56,10 +62,12 @@ const Result = () => {
           wrong_answer={wrongAnswer}
         />
       </ChartWrapper>
-      <button onClick={handleClickOtherQuestionButton}>다른 문제 풀기</button>
-      <Link to="/">다시 풀기</Link>
-      <Link to="/review/0">오답 노트</Link>
-    </div>
+      <ButtonsWrapper>
+        <Button onClick={handleClickOtherQuestionButton}>다른 문제 풀기</Button>
+        <LinkButton to="/">다시 풀기</LinkButton>
+        <LinkButton to="/review/0">오답 노트</LinkButton>
+      </ButtonsWrapper>
+    </PageWrapper>
   );
 };
 

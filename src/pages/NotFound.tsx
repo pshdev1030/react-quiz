@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
+import { LinkButton, PageWrapper } from "../styles/common";
 
 const NotFound = () => {
   return (
-    <div>
-      <Link to="/">메인으로 돌아가기</Link>
-    </div>
+    <PageWrapper>
+      <LinkButton to="/">메인으로 돌아가기</LinkButton>
+    </PageWrapper>
   );
 };
 
