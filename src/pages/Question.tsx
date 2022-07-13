@@ -42,6 +42,7 @@ const Question = () => {
     useUserSelect<string>("");
 
   const handleClickNextPage = useCallback(() => {
+    if (userSelect.length === 0) return;
     resetUserSelect();
     solveQuestion(questions[id], userSelect);
     if (curIndex + 1 === INITIAL_QUESTION_LENGTH) {
@@ -69,11 +70,25 @@ const Question = () => {
           onClick={setUserSelect}
         />
       )}
-      {userSelect.length !== 0 && (
-        <Button onClick={handleClickNextPage}>다음 문제</Button>
-      )}
+      {
+        <NextQuestionButton
+          visiable={userSelect.length !== 0}
+          onClick={handleClickNextPage}
+        >
+          다음 문제
+        </NextQuestionButton>
+      }
     </PageWrapper>
   );
 };
 
 export default Question;
+
+const NextQuestionButton = styled.button<{ visiable: boolean }>`
+  padding: 10px 20px;
+  border: 1px solid white;
+  &:hover {
+    background: white;
+  }
+  visibility: ${({ visiable }) => (visiable ? "visiable" : "hidden")};
+`;
