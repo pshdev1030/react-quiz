@@ -6,6 +6,7 @@ import useStore from "../store";
 import useFlag from "../hooks/useFlag";
 import dayjs from "dayjs";
 import { LinkButton, PageWrapper } from "../styles/common";
+import styled from "@emotion/styled";
 
 async function getQuestionsData() {
   const questionsData = await axios(INITIAL_QUESTION_URL);
@@ -60,10 +61,24 @@ const Main = () => {
 
   return (
     <PageWrapper>
-      <h1>React Quiiiiiiiiiiiiz</h1>
-      <LinkButton to="/question/0">퀴즈 풀기</LinkButton>
+      <ContentsWrapper>
+        <PageTitle>React Quiiiiiiiiiiiiz</PageTitle>
+        <LinkButton to="/question/0">퀴즈 풀기</LinkButton>
+      </ContentsWrapper>
     </PageWrapper>
   );
 };
 
 export default Main;
+
+const PageTitle = styled.h1`
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 30px;
+`;
+
+const ContentsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
