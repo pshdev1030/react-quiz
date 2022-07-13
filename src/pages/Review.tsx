@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { useCallback, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { SelectItems } from "../components/SelectItems";
 import { INITIAL_QUESTION_LENGTH } from "../constants";
 import useStore from "../store";
 
@@ -42,18 +43,11 @@ const Review = () => {
     <div>
       <div>{solvedQuestions[id]?.category}</div>
       <div>{solvedQuestions[id]?.question}</div>
-      <SelectItemsWrapper>
-        {solvedQuestions[id]?.select_array.map((select: string) => (
-          <li key={select}>
-            <SelectItem
-              correct={select === solvedQuestions[id]?.correct_answer}
-              userSelected={select === solvedQuestions[id]?.select}
-            >
-              {select}
-            </SelectItem>
-          </li>
-        ))}
-      </SelectItemsWrapper>
+      <SelectItems
+        userSelect={solvedQuestions[id]?.select}
+        correct_answer={solvedQuestions[id]?.correct_answer}
+        select_array={solvedQuestions[id]?.select_array}
+      />
       {Number(id) !== 0 && (
         <button onClick={handleClickPrevPage}>이전 문제</button>
       )}
@@ -66,21 +60,3 @@ const Review = () => {
 };
 
 export default Review;
-
-const SelectItemsWrapper = styled.ul`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  & li {
-    width: 100%;
-  }
-`;
-
-const SelectItem = styled.div<{ userSelected: boolean; correct: boolean }>`
-  background: ${({ correct, userSelected }) =>
-    correct
-      ? "linear-gradient(90deg,#56ffa4,#59bc86)"
-      : !correct && userSelected
-      ? "linear-gradient(90deg,#ff5656,#c16868)"
-      : "linear-gradient(90deg,#56ccff,#6eafb4)"};
-`;
