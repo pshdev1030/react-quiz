@@ -1,3 +1,4 @@
+import styled from "@emotion/styled";
 import { useCallback, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { SelectButtons } from "../components/SelectButtons";
@@ -6,6 +7,11 @@ import { INITIAL_QUESTION_LENGTH } from "../constants";
 import useUserSelect from "../hooks/useUserSelect";
 import useStore from "../store";
 import { Button, PageWrapper } from "../styles/common";
+import {
+  CategoryWrapper,
+  QuestionNumberWrapper,
+  QuestionWrapper,
+} from "../styles/Question";
 
 type ParamsType = {
   id: number;
@@ -38,7 +44,7 @@ const Question = () => {
   const handleClickNextPage = useCallback(() => {
     resetUserSelect();
     solveQuestion(questions[id], userSelect);
-    if (Number(id) + 1 === INITIAL_QUESTION_LENGTH) {
+    if (curIndex === INITIAL_QUESTION_LENGTH) {
       navigate("/result");
       return;
     }
@@ -47,9 +53,11 @@ const Question = () => {
 
   return (
     <PageWrapper>
-      <div>Q {`${Number(id) + 1}/${questions.length}`}</div>
-      <div>{questions[id]?.category}</div>
-      <div>{questions[id]?.question}</div>
+      <QuestionNumberWrapper>
+        <span className="Q">Q</span> {`${Number(id) + 1} / ${questions.length}`}
+      </QuestionNumberWrapper>
+      <CategoryWrapper>{questions[id]?.category}</CategoryWrapper>
+      <QuestionWrapper>{questions[id]?.question}</QuestionWrapper>
       {userSelect.length !== 0 ? (
         <SelectItems
           select_array={questions[id]?.select_array}
