@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useLayoutEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { SelectItems } from "../components/SelectItems";
 import { INITIAL_QUESTION_LENGTH } from "../constants";
@@ -25,7 +25,7 @@ const Review = () => {
   const { curIndex, solvedQuestions, resetStatus } = useStore();
   const navigate = useNavigate();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (solvedQuestions.length === 0) {
       navigate("/");
       return;

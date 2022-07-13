@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useCallback, useEffect } from "react";
+import { useCallback, useLayoutEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { SelectButtons } from "../components/SelectButtons";
 import { SelectItems } from "../components/SelectItems";
@@ -23,7 +23,7 @@ const Question = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (questions.length !== INITIAL_QUESTION_LENGTH) {
       navigate("/");
       return;

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import dayjs from "dayjs";
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useLayoutEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import CircleChart from "../components/CircleChart";
 import { INITIAL_QUESTION_LENGTH } from "../constants";
@@ -28,7 +28,7 @@ const Result = () => {
     navigate("/");
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!startTime) {
       navigate("/");
       return;
