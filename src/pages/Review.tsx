@@ -26,10 +26,12 @@ const Review = () => {
 
   useLayoutEffect(() => {
     if (solvedQuestions.length === 0) {
+      // 푼 문제가 없는 경우
       navigate("/");
       return;
     }
     if (curIndex !== INITIAL_QUESTION_LENGTH) {
+      // 문제를 다 풀지 않은 경우
       navigate(`/question/${curIndex}`);
       return;
     }

@@ -30,10 +30,12 @@ const Result = () => {
 
   useLayoutEffect(() => {
     if (!startTime) {
+      // 시작시간이 없는 경우
       navigate("/");
       return;
     }
     if (curIndex !== INITIAL_QUESTION_LENGTH) {
+      // 아직 풀지않은 문제가 있는 경우
       navigate(`/question/${curIndex}`);
       return;
     }

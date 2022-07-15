@@ -37,6 +37,7 @@ const Main = () => {
 
   useEffect(() => {
     if (questions.length === 0) {
+      // 문제가 없을 경우 문제와 시작시간 설정
       (async function () {
         try {
           const questions = await getQuestionsData();
@@ -47,6 +48,7 @@ const Main = () => {
         }
       })();
     } else {
+      // 문제가 있을 경우(다시 풀기) 시작시간만 재설정
       handleLoadSuccess();
       initStatus(dayjs());
     }

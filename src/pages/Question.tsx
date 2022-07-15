@@ -25,14 +25,17 @@ const Question = () => {
 
   useLayoutEffect(() => {
     if (questions.length !== INITIAL_QUESTION_LENGTH) {
+      // 문제를 받아오지 못한 경우
       navigate("/");
       return;
     }
     if (curIndex === INITIAL_QUESTION_LENGTH) {
+      // 문제를 다 푼 경우
       navigate("/result");
       return;
     }
     if (Number(id) !== curIndex) {
+      // 풀어야 할 문제 페이지가 아닌 경우
       navigate(`/question/${curIndex}`);
       return;
     }
