@@ -6,6 +6,9 @@ export const PageWrapper = styled.div`
   background: #6e85b7;
   border-radius: 20px;
   padding: 50px;
+  @media screen and (max-width: 500px) {
+    width: 100%;
+  }
 `;
 
 export const Button = styled.button`
