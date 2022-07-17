@@ -20,7 +20,7 @@ async function getQuestionsData() {
 }
 
 const Main = () => {
-  const { questions, init, initStatus } = useStore();
+  const { questions, init, initStatus, curIndex } = useStore();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isLoading, setIsLoadingTrue, setIsLoadingFalse] = useFlag(true);
   const [isError, setIsErrorTrue, setIsErrorFalse] = useFlag(false);
@@ -66,7 +66,9 @@ const Main = () => {
     <PageWrapper>
       <ContentsWrapper>
         <PageTitle>React Quiiiiiiiiiiiiz</PageTitle>
-        <LinkButton to="/question/0">퀴즈 풀기</LinkButton>
+        <LinkButton to="/question/0" replace>
+          퀴즈 풀기
+        </LinkButton>
       </ContentsWrapper>
     </PageWrapper>
   );

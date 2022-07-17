@@ -26,17 +26,17 @@ const Question = () => {
   useLayoutEffect(() => {
     if (questions.length !== INITIAL_QUESTION_LENGTH) {
       // 문제를 받아오지 못한 경우
-      navigate("/");
+      navigate("/", { replace: true });
       return;
     }
     if (curIndex === INITIAL_QUESTION_LENGTH) {
       // 문제를 다 푼 경우
-      navigate("/result");
+      navigate("/result", { replace: true });
       return;
     }
     if (Number(id) !== curIndex) {
       // 풀어야 할 문제 페이지가 아닌 경우
-      navigate(`/question/${curIndex}`);
+      navigate(`/question/${curIndex}`, { replace: true });
       return;
     }
   }, [id, curIndex, questions.length]);
@@ -49,10 +49,10 @@ const Question = () => {
     resetUserSelect();
     solveQuestion(questions[id], userSelect);
     if (curIndex + 1 === INITIAL_QUESTION_LENGTH) {
-      navigate("/result");
+      navigate("/result", { replace: true });
       return;
     }
-    navigate(`/question/${Number(id) + 1}`);
+    navigate(`/question/${Number(id) + 1}`, { replace: true });
   }, [questions, id, userSelect]);
   return (
     <PageWrapper>
